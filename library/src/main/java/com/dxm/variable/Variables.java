@@ -5,6 +5,9 @@ package com.dxm.variable;
  */
 
 public class Variables {
+    private Variables() {
+
+    }
 
     public static <T> T requireNotNull(T o) {
         if (null == o) throw new IllegalArgumentException("value should not be null");
