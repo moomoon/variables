@@ -1,5 +1,7 @@
-# variables
+# variables  [![](https://jitpack.io/v/moomoon/variables.svg)](https://jitpack.io/#moomoon/variables)
 Delegated property for java.
+
+
 
 ```java
       Val<Integer> lazyVal = new Variables.Lazy<Integer>() {
