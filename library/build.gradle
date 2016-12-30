@@ -1,5 +1,5 @@
 apply plugin: 'java'
-
+apply plugin: 'maven'
 //android {
 //    compileSdkVersion 25
 //    buildToolsVersion "25.0.2"
