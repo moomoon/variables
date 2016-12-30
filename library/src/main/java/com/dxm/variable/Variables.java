@@ -29,7 +29,7 @@ public class Variables {
             return v;
         }
 
-        public abstract T create();
+        protected abstract T create();
     }
 
     private abstract static class BaseVariable<T> implements Var<T> {
@@ -49,30 +49,39 @@ public class Variables {
 
     }
 
-    public static abstract class Vetoable<T> extends BaseVariable<T> {
+    public static abstract class Vetoable<T> extends Observable<T> {
         public Vetoable(T initialValue) {
             super(initialValue);
         }
 
-        @Override public void set(T t) {
-            if (shouldChange(get(), requireNotNull(t)))
-                super.set(t);
+        @Override public boolean beforeChange(T oldValue, T newValue) {
+            return shouldChange(oldValue, newValue);
         }
 
-        public abstract boolean shouldChange(T oldValue, T newValue);
+        protected abstract boolean shouldChange(T oldValue, T newValue);
 
+        @Override protected void onChange(T oldValue, T newValue) {
+
+        }
     }
 
-    public static abstract class Observable<T> extends Vetoable<T> {
+    public static abstract class Observable<T> extends BaseVariable<T> {
         public Observable(T initialValue) {
             super(initialValue);
         }
 
-        @Override public boolean shouldChange(T oldValue, T newValue) {
-            onChange(oldValue, newValue);
+        public boolean beforeChange(T oldValue, T newValue) {
             return true;
         }
 
-        public abstract void onChange(T oldValue, T newValue);
+        @Override public void set(T t) {
+            if (!beforeChange(get(), requireNotNull(t))) return;
+            T current = get();
+            super.set(t);
+            onChange(current, t);
+
+        }
+
+        protected abstract void onChange(T oldValue, T newValue);
     }
 }
