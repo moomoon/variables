@@ -12,14 +12,14 @@ Delegated property for java.
       
       int value = lazyVal.get();
         
-      Var<Integer> observableVal = new Variables.Observable<Integer>(0) {
+      Var<Integer> observableVar = new Variables.Observable<Integer>(0) {
 
           @Override public void onChange(Integer oldValue, Integer newValue) {
               do your thing;
           }
       };
       
-      observableVal.set(1);
+      observableVar.set(1);
 
 ```
 
