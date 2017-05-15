@@ -9,6 +9,8 @@ Delegated property for java.
               return some calculation;
           }
       }; 
+      
+      int value = lazyVal.get();
         
       Var<Integer> observableVal = new Variables.Observable<Integer>(0) {
 
@@ -16,6 +18,8 @@ Delegated property for java.
               do your thing;
           }
       };
+      
+      observableVal.set(1);
 
 ```
 
