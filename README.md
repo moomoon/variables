@@ -24,7 +24,7 @@ Delegated property for java.
 ## Installation
 Available via [JitPack](https://jitpack.io/).
 
-###Step 1.
+### Step 1.
 Add it in your root build.gradle at the end of repositories:
 ```groovy
 	allprojects {
@@ -34,7 +34,7 @@ Add it in your root build.gradle at the end of repositories:
 		}
 	}
 ```
-###Step 2. 
+### Step 2. 
 Add the dependency
 ```groovy
 	dependencies {
